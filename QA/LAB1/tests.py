@@ -1,4 +1,5 @@
 import unittest
+import vars
 from exception_manager import ExceptionManager
 
 class TestIsCritical(unittest.TestCase):
@@ -21,15 +22,15 @@ class TestHandleManager(unittest.TestCase):
         e_manager = ExceptionManager()
         e = TypeError()
         e_manager.handle_manger(e)
-        self.assertEqual(1, e_manager.critical_exceptions_count)
-        self.assertEqual(0, e_manager.non_critical_exceptions_count)
+        self.assertEqual(vars.critical_count, e_manager.critical_exceptions_count)
+        self.assertEqual(vars.non_critical_count, e_manager.non_critical_exceptions_count)
 
     def test_not_handled(self):
         e_manager = ExceptionManager()
         e = IndentationError()
         e_manager.handle_manger(e)
-        self.assertNotEqual(1, e_manager.critical_exceptions_count)
-        self.assertNotEqual(0, e_manager.non_critical_exceptions_count)
+        self.assertNotEqual(vars.critical_count, e_manager.critical_exceptions_count)
+        self.assertNotEqual(vars.non_critical_count, e_manager.non_critical_exceptions_count)
 
 
 if __name__ == '__main__':
